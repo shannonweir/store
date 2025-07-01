@@ -1,4 +1,4 @@
-package com.example.store.controller;
+package com.example.store.cache;
 
 import com.example.store.repository.ProductRepository;
 import com.example.store.service.ProductService;

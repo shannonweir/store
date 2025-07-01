@@ -31,6 +31,4 @@ public class CustomerController {
     public CustomerDTO createCustomer(@RequestBody final CustomerDTO customerDTO) {
         return customerService.createCustomer(customerDTO);
     }
-
-
 }
