@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-product
+      author: shannonweir@securitease.com
+      changes:
+        - sqlFile:
+            path: db/changelog/create_product_table.sql

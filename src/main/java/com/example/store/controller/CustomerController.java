@@ -1,9 +1,7 @@
 package com.example.store.controller;
 
 import com.example.store.dto.CustomerDTO;
-import com.example.store.entity.Customer;
-import com.example.store.mapper.CustomerMapper;
-import com.example.store.repository.CustomerRepository;
+import com.example.store.service.CustomerService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,18 +14,23 @@ import java.util.List;
 @RequestMapping("/customer")
 @RequiredArgsConstructor
 public class CustomerController {
-
-    private final CustomerRepository customerRepository;
-    private final CustomerMapper customerMapper;
+    private final CustomerService customerService;
 
     @GetMapping
-    public List<CustomerDTO> getAllCustomers() {
-        return customerMapper.customersToCustomerDTOs(customerRepository.findAll());
+    public List<CustomerDTO> getCustomers() {
+        return customerService.getAllCustomers();
+    }
+
+    @GetMapping("/search")
+    public List<CustomerDTO> getCustomersByNameContaining(@RequestParam final String name) {
+        return customerService.getCustomersByNameContaining(name);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDTO createCustomer(@RequestBody Customer customer) {
-        return customerMapper.customerToCustomerDTO(customerRepository.save(customer));
+    public CustomerDTO createCustomer(@RequestBody final CustomerDTO customerDTO) {
+        return customerService.createCustomer(customerDTO);
     }
+
+
 }

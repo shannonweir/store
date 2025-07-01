@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5-customer-index
+      author: shannonweir@securitease.com
+      changes:
+        - sqlFile:
+            path: db/changelog/create_customer_name_index.sql

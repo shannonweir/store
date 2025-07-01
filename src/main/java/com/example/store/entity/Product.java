@@ -9,16 +9,15 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(
-        name = "customer",
-        indexes = {@Index(name = "idx_customer_name", columnList = "name")})
-public class Customer {
+@Table(name = "product")
+public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String description;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "products")
     private List<Order> orders = new ArrayList<>();
 }

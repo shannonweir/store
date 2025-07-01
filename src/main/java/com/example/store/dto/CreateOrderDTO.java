@@ -10,9 +10,11 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class OrderDTO {
+public class CreateOrderDTO {
     private Long id;
+
     private String description;
-    private CustomerDTO customer;
-    private List<ProductDTO> products;
+    private Long customerId;
+    private List<Long> products;
+    ;
 }

@@ -3,6 +3,8 @@ package com.example.store.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -10,9 +12,10 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class OrderDTO {
+@Builder
+@AllArgsConstructor
+public class ProductDTO {
     private Long id;
     private String description;
-    private CustomerDTO customer;
-    private List<ProductDTO> products;
+    private List<Long> orderIds;
 }
