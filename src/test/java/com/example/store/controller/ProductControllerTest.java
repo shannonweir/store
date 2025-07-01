@@ -38,7 +38,6 @@ class ProductControllerTest {
     @BeforeEach
     void setUp() {
         product1 = ProductDTO.builder().id(1L).description("Product 1").build();
-
         product2 = ProductDTO.builder().id(2L).description("Product 2").build();
     }
 
