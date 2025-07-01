@@ -3,6 +3,7 @@ package com.example.store.controller;
 import com.example.store.dto.CreateOrderDTO;
 import com.example.store.dto.CustomerDTO;
 import com.example.store.dto.OrderDTO;
+import com.example.store.dto.ProductDTO;
 import com.example.store.mapper.CustomerMapper;
 import com.example.store.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +42,7 @@ class OrderControllerTests {
     private OrderDTO order;
     private CustomerDTO customer;
     private CreateOrderDTO createOrder;
+    private ProductDTO product;
 
     @BeforeEach
     void setUp() {
@@ -48,14 +50,18 @@ class OrderControllerTests {
         customer.setName("John Doe");
         customer.setId(1L);
 
+        product = ProductDTO.builder().id(1L).description("Test Product").build();
+
         order = new OrderDTO();
         order.setDescription("Test Order");
         order.setId(1L);
         order.setCustomer(customer);
+        order.setProducts(List.of(product));
 
         createOrder = new CreateOrderDTO();
         createOrder.setDescription("Test Order");
         createOrder.setCustomerId(customer.getId());
+        createOrder.setProducts(List.of(1L));
     }
 
     @Test
@@ -76,7 +82,7 @@ class OrderControllerTests {
 
         mockMvc.perform(get("/order"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$..description").value("Test Order"))
+                .andExpect(jsonPath("$[0].description").value("Test Order"))
                 .andExpect(jsonPath("$..customer.name").value("John Doe"));
     }
 }

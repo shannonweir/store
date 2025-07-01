@@ -5,6 +5,7 @@ import com.example.store.dto.OrderDTO;
 import com.example.store.service.OrderService;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +37,7 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderDTO createOrder(@RequestBody CreateOrderDTO orderDto) {
+    public OrderDTO createOrder(@Valid @RequestBody CreateOrderDTO orderDto) {
         try {
             return orderService.createOrder(orderDto);
         } catch (IllegalArgumentException e) {

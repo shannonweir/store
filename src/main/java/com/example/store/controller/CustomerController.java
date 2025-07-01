@@ -3,6 +3,8 @@ package com.example.store.controller;
 import com.example.store.dto.CustomerDTO;
 import com.example.store.service.CustomerService;
 
+import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,7 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDTO createCustomer(@RequestBody final CustomerDTO customerDTO) {
+    public CustomerDTO createCustomer(@Valid @RequestBody final CustomerDTO customerDTO) {
         return customerService.createCustomer(customerDTO);
     }
 }
